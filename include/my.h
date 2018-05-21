@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** my.h
+** my
 ** File description:
-** lingo
+** my
 */
 
 #ifndef MY_H
@@ -16,8 +16,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "struct.h"
+#include <time.h>
 
-int file_opener(char *);
+int play(t_word *word);
+void init(t_word *word, char **av);
+char *my_getline(void);
+int your_turn(t_word *word);
 int nb_word_per_line(char *);
+int file_opener(char *);
+void re_initfind(t_word *word);
+char *secret_word(char **av);
+char **my_str_to_wordtab(char c, char *str);
 
 #endif /* !MY_H */

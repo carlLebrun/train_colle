@@ -7,20 +7,29 @@
 
 #include "../include/my.h"
 
-void print_rules(void)
+void print_rules(t_word *word)
 {
 	printf("*: invalide letter\n");
 	printf("?: incorrectly placed letter\n");
 	printf("Will you find the secret word?\n");
+	printf("%s\n\n", word->finding);
 }
 
-void main(void)
+int main(int ac, char **av)
 {
 	int i = 0;
 	t_word word;
 
-	print_rules();
+	if (ac != 2)
+		return (84);
+	init(&word, av);
+	print_rules(&word);
 	while (i == 0) {
-		play(&word);
+		i = play(&word);
 	}
+	if (i == WIN)
+		printf("You won!\n");
+	else if (i == LOSE)
+		printf("You lost!\n");
+	return (i);
 }

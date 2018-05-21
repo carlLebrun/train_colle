@@ -25,9 +25,12 @@ char *word_selector(char *str)
 	int i = 0;
 	char **list;
 
+	srand(time(NULL));
 	list = my_str_to_wordtab('\n', str);
-	printf("%s", list[0]);
-	return (list[0]);
+	while (list[i] != NULL)
+		i++;
+	i = rand() % (i - 1) + 0;
+	return (list[i]);
 }
 
 int file_opener(char *file_name)
@@ -46,14 +49,15 @@ int file_opener(char *file_name)
 	return (0);
 }
 
-int main(int ac, char **av)
+char *secret_word(char **av)
 {
 	int fd;
 	char *buff = malloc(sizeof(char) * 1000);
+	char *str;
 
-	if ((fd = open("../db.txt", O_RDONLY)) == -1)
-		return (84);
+	if ((fd = open(av[1], O_RDONLY)) == -1)
+		return (NULL);
 	read(fd, buff, 100);
-	word_selector(buff);
-	return (0);
+	str = word_selector(buff);
+	return (str);
 }

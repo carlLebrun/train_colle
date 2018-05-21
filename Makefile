@@ -9,6 +9,8 @@ SRC	=	src/main.c  \
         src/play.c  \
         src/init.c  \
         src/get_word.c  \
+        src/my_str_to_wordtab.c \
+        src/file_opener.c
 
 OBJ	=	$(SRC:.c=.o)
 
