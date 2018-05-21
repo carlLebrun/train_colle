@@ -23,11 +23,11 @@ int nb_word_per_line(char *str)
 char *word_selector(char *str)
 {
 	int i = 0;
-	char *list = malloc(sizeof(char) * 1000);
+	char **list;
 
-	list = strtok(str, '\n');
-	printf("%s", list[2]);
-	return (list[2]);
+	list = my_str_to_wordtab('\n', str);
+	printf("%s", list[0]);
+	return (list[0]);
 }
 
 int file_opener(char *file_name)
@@ -41,16 +41,18 @@ int file_opener(char *file_name)
 	if (nb_word_per_line(buff) == 0)
 		printf("%s", buff);
 	else
-		printf("BITE");
+		printf("ERREUR");
 	free (buff);
 	return (0);
 }
 
 int main(int ac, char **av)
 {
-	int fd = open("../db.txt", O_RDONLY);
+	int fd;
 	char *buff = malloc(sizeof(char) * 1000);
 
+	if ((fd = open("../db.txt", O_RDONLY)) == -1)
+		return (84);
 	read(fd, buff, 100);
 	word_selector(buff);
 	return (0);
